@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+		<title>Frontend Mentor | Job Listings</title>
+	</head>
+	<body>
+		<div class="header-img"></div>
+		<div class="listings">
+			<div class="filter text-bold">
+				<div class="tags-container"></div>
+				<div class="clear-btn">Clear</div>
+			</div>
+		</div>
+		<template id="listing-template">
+			<div class="listing">
+				<div class="company-logo"></div>
+				<div class="info">
+					<div class="info-header text-bold">
+						<div class="company-name"></div>
+						<div class="new-and-featured">
+							<div class="new">new!</div>
+							<div class="featured">featured</div>
+						</div>
+					</div>
+					<div class="position text-bold"></div>
+					<div class="extra"></div>
+				</div>
+				<div class="tags"></div>
+			</div>
+		</template>
+		<template id="filtered-tag">
+			<div class="filtered-tag">
+				<div class="tag-name"></div>
+				<div class="remove-btn"></div>
+			</div>
+		</template>
+		<div class="attribution">
+			Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. Coded by
+			<a href="https://github.com/quanmtran" target="_blank">Quan Tran</a>.
+		</div>
+	</body>
+</html>

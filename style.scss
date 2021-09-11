@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@500;700&display=swap');
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+@mixin flex-box($direction, $justify, $align, $gap) {
+	display: flex;
+	flex-direction: $direction;
+	justify-content: $justify;
+	align-items: $align;
+	gap: $gap;
+}
+
+$desaturated-dark-cyan: hsl(180, 29%, 50%);
+$light-grayish-cyan-bg: hsl(180, 52%, 96%);
+$light-grayish-cyan-filter-tablets: hsl(180, 31%, 95%);
+$dark-grayish-cyan: hsl(180, 8%, 52%);
+$very-dark-grayish-cyan: hsl(180, 14%, 20%);
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Spartan', sans-serif;
+	min-height: 100vh;
+	@include flex-box(column, flex-start, center, 30px);
+	background-color: $light-grayish-cyan-bg;
+	font-size: 15px;
+
+	.header-img {
+		height: 100px;
+		width: 100%;
+		background: url('./images/bg-header-mobile.svg'), $desaturated-dark-cyan;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	.listings {
+		@include flex-box(column, center, center, 40px);
+		max-width: 300px;
+		transform: translateY(-70px);
+
+		& > div {
+			background-color: white;
+			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+			width: 100%;
+			border-radius: 10px;
+		}
+
+		.filter {
+			@include flex-box(row, space-between, center, 20px);
+			font-size: 0.8em;
+			color: $desaturated-dark-cyan;
+			padding: 20px;
+			visibility: hidden;
+
+			.tags-container {
+				@include flex-box(row, flex-start, center, 20px);
+				flex-wrap: wrap;
+
+				.filtered-tag {
+					@include flex-box(row, center, center, 0);
+					height: 2em;
+
+					.tag-name {
+						background-color: $light-grayish-cyan-filter-tablets;
+						height: 100%;
+						@include flex-box(row, center, center, 0);
+						padding: 0 0.6em;
+						border-top-left-radius: 5px;
+						border-bottom-left-radius: 5px;
+					}
+
+					.remove-btn {
+						background: url('./images/icon-remove.svg'), $desaturated-dark-cyan;
+						background-position: center;
+						background-repeat: no-repeat;
+						background-size: 50%, 100%;
+						height: 100%;
+						aspect-ratio: 1/1;
+						border-top-right-radius: 5px;
+						border-bottom-right-radius: 5px;
+
+						&:hover {
+							cursor: pointer;
+							background-color: $very-dark-grayish-cyan;
+						}
+					}
+				}
+			}
+
+			.clear-btn {
+				position: relative;
+
+				&::after {
+					content: '';
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					right: 0;
+					height: 1px;
+					background-color: $desaturated-dark-cyan;
+					opacity: 0;
+				}
+
+				&:hover {
+					cursor: pointer;
+
+					&::after {
+						opacity: 1;
+					}
+				}
+			}
+		}
+
+		.listing {
+			position: relative;
+			padding: 30px 20px;
+			border-left: 5px solid $desaturated-dark-cyan;
+
+			&.hidden {
+				display: none;
+			}
+
+			.company-logo {
+				position: absolute;
+				height: 40px;
+				aspect-ratio: 1/1;
+				border-radius: 50%;
+				top: 0;
+				transform: translateY(-50%);
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: cover;
+			}
+
+			.info {
+				border-bottom: 1px solid $dark-grayish-cyan;
+				padding-bottom: 10px;
+				@include flex-box(column, center, flex-start, 10px);
+
+				.info-header {
+					@include flex-box(row, flex-start, center, 10px);
+
+					.company-name {
+						color: $desaturated-dark-cyan;
+						font-size: 0.9em;
+					}
+
+					.new-and-featured {
+						@include flex-box(row, flex-start, center, 5px);
+
+						.new {
+							background-color: $desaturated-dark-cyan;
+						}
+
+						.featured {
+							background-color: $very-dark-grayish-cyan;
+						}
+
+						.new,
+						.featured {
+							text-transform: uppercase;
+							font-size: 0.6em;
+							color: white;
+							border-radius: 50px;
+							padding: 0.7em 0.8em;
+						}
+					}
+				}
+
+				.position {
+					&:hover {
+						cursor: pointer;
+						color: $desaturated-dark-cyan;
+					}
+				}
+
+				.extra {
+					color: $dark-grayish-cyan;
+					font-size: 0.8em;
+				}
+			}
+
+			.tags {
+				padding-top: 10px;
+				@include flex-box(row, flex-start, flex-start, 10px);
+				flex-wrap: wrap;
+
+				.tag {
+					padding: 0.5em;
+					border-radius: 5px;
+					background-color: $light-grayish-cyan-bg;
+					color: $desaturated-dark-cyan;
+					font-size: 0.8em;
+
+					&:hover {
+						cursor: pointer;
+						background-color: $desaturated-dark-cyan;
+						color: white;
+					}
+				}
+			}
+		}
+	}
+
+	.attribution {
+		margin: 50px 0;
+		font-size: 0.7em;
+		text-align: center;
+
+		a {
+			color: hsl(228, 45%, 44%);
+		}
+	}
+
+	.text-bold {
+		font-weight: 700;
+	}
+}
+
+@media (min-width: 501px) {
+	body {
+		.header-img {
+			background-image: url('./images/bg-header-desktop.svg');
+		}
+
+		.listings {
+			max-width: 800px;
+			margin: 0 20px;
+
+			.listing {
+				@include flex-box(row, space-between, center, 50px);
+				padding: 20px;
+
+				.company-logo {
+					top: 50%;
+					transform: translateY(-50%);
+					height: 60px;
+				}
+
+				.info {
+					padding: 0;
+					padding-left: 80px;
+					border: none;
+				}
+
+				.tags {
+					padding: 0;
+					@include flex-box(row, flex-end, center, 10px);
+				}
+			}
+		}
+	}
+}
